@@ -1,12 +1,19 @@
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
+import MainContainer from './containers/MainContainer';
+import NavBarContainer from './containers/NavBarContainer';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-  }
   render() {
-    return <div>TESTING</div>;
+    return (
+      <div>
+        {/* <NavBar /> */}
+        {/* <Switch>
+          <Route exact path="/" component={() => <MainContainer />} />
+        </Switch> */}
+        <MainContainer />
+      </div>
+    );
   }
 }
 
