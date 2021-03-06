@@ -102,17 +102,17 @@ funkController.deleteItems = (req, res, next) => {
   
   
   
-  const items = Object.keys(req.body);
-  // console.log('items:', items)
+  // const items = Object.keys(req.body);
+  // // console.log('items:', items)
   
-  const queryItem = items.map(el => {
-    return {"_id": req.body[el]["_id"]}
-  });
+  // const queryItem = items.map(el => {
+  //   return {"_id": req.body[el]["_id"]}
+  // });
   
-  console.log('queryItem:', queryItem)
-  req.body = queryItem;
+  // console.log('queryItem:', queryItem)
+  // req.body = queryItem;
   
-  console.log('body', req.body);
+  // console.log('body', req.body);
   
   //for non-DB testing
   return next();
