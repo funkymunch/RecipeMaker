@@ -1,11 +1,43 @@
 const path = require('path');
 const express = require('express');
 
+const express = require('express');
+
+const mongoose = require('mongoose');
+const ItemController = require('./dbController')
+
+
 const app = express();
 
 const apiRouter = require('./routes/api');
 
 const PORT = 3000;
+
+mongoose.connect('mongodb+srv://ziyadelbaz:PYkNVJqtfCs8zDnk@cluster0.bafl3.mongodb.net/test', { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connection.once('open', () => {
+  console.log('Connected to FunkyMunch Database')
+})
+
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
+//DB SPECIFIC
+
+app.post('/', ItemController.createItem, (req, res) => {
+  res.end()
+})
+
+app.get('/', ItemController.findItems)
+app.delete('/', ItemController.deleteItemMany)
+app.patch('/:id', ItemController.updateItem)
+
+
+
+//DB SPECIFIC
+
+
+
+
 
 app.use('/build', express.static(path.join(__dirname, '../build')));
 
