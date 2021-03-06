@@ -37,7 +37,12 @@ const ItemController = {
 
     updateItem(req, res) {
 
-        console.log(req.params.id)
+        //modify so that it takes in 
+
+        {
+            _id: ""
+        }
+
         const oldItem = {
             _id: req.params.id
         }
@@ -54,8 +59,10 @@ const ItemController = {
 
     // delete item
 
-    deleteItem(req, res) {
-        Item.deleteOne({ _id: req.body._id }, (err, response) => {
+    deleteItemMany(req, res) {
+        const ids = ["6043c1f1d645c617b559950a","6043dbcafb29d820292d39e5"]
+
+        Item.deleteMany({ _id: { $in: ids} }, (err, response) => {
             if (err) {
                 return res.status(400).json(err)
             } else {

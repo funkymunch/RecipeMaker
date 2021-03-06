@@ -22,7 +22,7 @@ app.post('/', ItemController.createItem, (req, res) => {
 })
 
 app.get('/', ItemController.findItems)
-app.delete('/', ItemController.deleteItem)
+app.delete('/', ItemController.deleteItemMany)
 app.patch('/:id', ItemController.updateItem)
 
 
