@@ -1,7 +1,6 @@
-const { restart } = require('nodemon');
-const Item = require('./itemModels');
+const Item = require('../itemModels');
 
-const ItemController = {
+const dbController = {
 
     // Create new item
     createItem(req, res) {
@@ -39,9 +38,9 @@ const ItemController = {
 
         //modify so that it takes in 
 
-        {
-            _id: ""
-        }
+        // {
+        //     _id: ""
+        // }
 
         const oldItem = {
             _id: req.params.id
@@ -80,4 +79,4 @@ const ItemController = {
 
 }
 
-module.exports = ItemController
+module.exports = dbController
