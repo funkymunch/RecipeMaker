@@ -1,19 +1,17 @@
 // const db = require('../models/funkModels');
-const { response } = require('express');
 const fetch = require('node-fetch');
-
 
 const funkController = {};
 
 funkController.getInventory = (req, res, next) => {
   console.log('Hit getInventory!!');
-  
+
   //for non-DB testing
   return next();
-  
+
   // // db.query here
   // const query = 'SELECT .....';
-  
+
   // db.query(query)
   // .then(data => {
   //   res.locals.items = data.rows;
@@ -22,31 +20,25 @@ funkController.getInventory = (req, res, next) => {
   // })
   // .catch(e => {
   //   return next({log: 'Error in getItems middleware', message: {err: e}});
-  // }); 
+  // });
 };
 
-
-
 funkController.createItem = (req, res, next) => {
-  
   //  item info on req.body -----> {item1Name: {itemName: string, bucketNo: num, use: true/false}}
-  
+
   console.log('Hit createItem!!');
-  
-  
-  
+
   const items = Object.keys(req.body);
   // console.log('items:', items)
   const queryItem = req.body[items[0]];
-  console.log('queryItem:', queryItem)
-  
-  
+  console.log('queryItem:', queryItem);
+
   //for non-DB testing
   return next();
-  
+
   // // db.query here
   // const query = '.....';
-  
+
   // db.query(query)
   // .then(data => {
   //   res.locals.status = data;
@@ -55,32 +47,25 @@ funkController.createItem = (req, res, next) => {
   // })
   // .catch(e => {
   //   return next({log: 'Error in createItem middleware', message: {err: e}});
-  // }); 
+  // });
 };
 
-
 funkController.updateItem = (req, res, next) => {
-  
   //   req.body -----> {{itemName: {bucketNo: num, use: true/false}}
-  
-  
+
   console.log('Hit updateItem!!');
-  
-  
-  
+
   const items = Object.keys(req.body);
   // console.log('items:', items)
   const queryItem = req.body[items[0]];
-  console.log('queryItem:', queryItem)
-  
-  
-  
+  console.log('queryItem:', queryItem);
+
   //for non-DB testing
   return next();
-  
+
   // // db.query here
   // const query = '.....';
-  
+
   // db.query(query)
   // .then(data => {
   //   res.locals.status = data;
@@ -89,39 +74,32 @@ funkController.updateItem = (req, res, next) => {
   // })
   // .catch(e => {
   //   return next({log: 'Error in updateItem middleware', message: {err: e}});
-  // }); 
+  // });
 };
 
-
-
 funkController.deleteItems = (req, res, next) => {
-  
   //   req.body -----> {itemName: {bucketNo: num, use: true/false}, item2name:{...}}
-  
+
   console.log('Hit deleteItems!!', req.body);
-  
-  
-  
+
   // const items = Object.keys(req.body);
   // // console.log('items:', items)
-  
+
   // const queryItem = items.map(el => {
   //   return {"_id": req.body[el]["_id"]}
   // });
-  
+
   // console.log('queryItem:', queryItem)
   // req.body = queryItem;
-  
+
   // console.log('body', req.body);
-  
+
   //for non-DB testing
   return next();
-  
-  
-  
+
   // // db.query here
   // const query = '.....';
-  
+
   // db.query(query)
   // .then(data => {
   //   res.locals.status = data;
@@ -130,28 +108,31 @@ funkController.deleteItems = (req, res, next) => {
   // })
   // .catch(e => {
   //   return next({log: 'Error in deleteItems middleware', message: {err: e}});
-  // }); 
+  // });
 };
-
 
 funkController.getRecipes = async (req, res, next) => {
   console.log('Hit getRecipes!!', req.body);
-  
+
   //   req.body -----> {itemName: {bucketNo: num, use: true/false}, item2name:{...}}
-  
-  const items = Object.keys(req.body).slice(0,1);
-  
-  console.log('items for recipe:', items)
-  
+
+  const items = Object.keys(req.body).slice(0, 1);
+
+  console.log('items for recipe:', items);
+
   const commaItems = items.join(',+');
-  
-  console.log('commaItems:', commaItems)
-  
+
+  console.log('commaItems:', commaItems);
+
   let keyIndex = 0;
-  const apiKeys = ['15b3f4802c0e4563b2bded336d9fe84e', 'f470747f26984405bc334aa91f91c166', '2cb2288f93d441528099bd7df94f6b1a'];
-  
+  const apiKeys = [
+    '15b3f4802c0e4563b2bded336d9fe84e',
+    'f470747f26984405bc334aa91f91c166',
+    '2cb2288f93d441528099bd7df94f6b1a',
+  ];
+
   const url = `https://api.spoonacular.com/recipes/findByIngredients?ingredients=${commaItems}&number=2&apiKey=${apiKeys[keyIndex]}`;
-  
+
   // fetch(url)
   // .then(data => data.json())
   // .then(data => {
@@ -164,9 +145,9 @@ funkController.getRecipes = async (req, res, next) => {
   //
   const recipesListData = await fetch(url);
   const recipesListX = recipesListData.json();
-  
-  console.log('recipesListX:', recipesListX)
-  
+
+  console.log('recipesListX:', recipesListX);
+
   //****************** */
   // const recipesList = [
   //   {
@@ -230,39 +211,32 @@ funkController.getRecipes = async (req, res, next) => {
   //     likes: 0
   //   }
   // ]
-  
-  
+
   // const recipeIDs = recipesList.map(el => el.id);
   // console.log('recipeIDs:', recipeIDs)
-  
+
   // const recipes = [];
-  
+
   // recipeIDs.forEach(el => {
-    
+
   //   const urlAnalyzed = `https://api.spoonacular.com/recipes/${el}/analyzedInstructions?apiKey=${apiKeys[keyIndex]}`;
-  //   console.log('urlAnalyzed:', urlAnalyzed)    
+  //   console.log('urlAnalyzed:', urlAnalyzed)
   //   const recipesData = await fetch(urlAnalyzed);
-  //   recipes.push(recipesData) 
+  //   recipes.push(recipesData)
   // });
-  
+
   // console.log('recipes:', recipes)
   //********************* */
-  
+
   //for non-API testing
   return next();
-  
-  
+
   // API REQUEST LOGIC / ALGO
-  
+
   // // HIT API here
-  
 };
 
-
-
 module.exports = funkController;
-
-
 
 // starWarsController.getCharacters = (req, res, next) => {
 //   // write code here
@@ -301,7 +275,6 @@ module.exports = funkController;
 
 // };
 
-
 // starWarsController.getSpecies = (req, res, next) => {
 //   // write code here
 //   const id = req.query.id;
@@ -318,12 +291,9 @@ module.exports = funkController;
 //     next({log: 'Error in getSpecies middleware', message: {err: e}});
 //   });
 
-
 //   //save the returned data in res.locals.species (maybe?)
 //   //we will build our response and pass in our res.locas.species as a JSON object
 // };
-
-
 
 // starWarsController.getHomeworld = (req, res, next) => {
 //   // write code here

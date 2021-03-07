@@ -1,7 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useInventory, useSetInventory } from '../contexts/InventoryContexts';
 import axios from 'axios';
 
-function IngredientDisplay({ itemName, use, _id, inventory, setInventory }) {
+function IngredientDisplay({ itemName, use, _id }) {
+  const inventory = useInventory();
+  const setInventory = useSetInventory();
+
   const color = use ? 'green' : 'red';
 
   /**

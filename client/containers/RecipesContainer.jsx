@@ -1,26 +1,32 @@
 import React, { useState, useEffect } from 'react';
 import RecipeDisplay from '../components/RecipeDisplay';
 
-// class RecipesDisplay extends Component {
-//   render() {
-//     return (
-//       <div>
-//         <h1>Hello</h1>
-//       </div>
-//  console.log();   );
-//   }
-// }
-
 function RecipesContainer() {
-  const [recipes, setRecipes] = useState('');
+  let recipesContain;
+  useEffect(() => {
+    axios.get('./api/recipes').then((res) => {});
+  }, []);
 
-  // useEffect(() => {
-  //   axios.get('./api/inventory').then((res) => {
-  //     // this is a sample data structure from the server: {carrot: {itemName: carrot: bucketNumber: 1, use: true, _id: 1234}}
-  //     setBuckets(res.data);
-  //   });
-  // }, []);
-  return null;
+  if (!recipesContain) return 'Loading...';
+
+  const RecipesDisplay = recipesContain.map((ele, index) => {
+    <RecipeDisplay />;
+  });
+  return { RecipesDisplay };
 }
 
 export default RecipesContainer;
+
+// infiniteScroll = () => {
+// // End of the document reached?
+//   if (window.innerHeight + document.documentElement.scrollTop
+//   === document.documentElement.offsetHeight){
+
+//     let newPage = this.state.page;
+//     newPage++;
+//     this.setState({
+//           page: newPage
+//     });
+//     this.fetchData(newPage);
+//   }
+// }

@@ -1,19 +1,18 @@
-import React, { Component } from 'react';
+import React from 'react';
 import InventoryContainer from './InventoryContainer';
 import RecipesContainer from './RecipesContainer';
+import { InventoryProvider } from '../contexts/InventoryContexts';
 
-class MainContainer extends Component {
-  constructor(props) {
-    super(props);
-  }
-  render() {
-    return (
-      <div>
+function MainContainer() {
+  return (
+    <div>
+      <InventoryProvider>
         <h1>Hello</h1>
         <InventoryContainer />
         {/* <RecipesContainer /> */}
-      </div>
-    );
-  }
+      </InventoryProvider>
+    </div>
+  );
 }
+
 export default MainContainer;
