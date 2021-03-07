@@ -1,3 +1,14 @@
+/**
+ * ************************************
+ *
+ * @module  InventoryContainer
+ * @author  Han Chae && Hanji Chen
+ * @date    March 6, 2021
+ * @description
+ *
+ * ************************************
+ */
+
 import React from 'react';
 import InventoryBucket from '../components/InventoryBucket';
 import { useInventory, useSetInventory } from '../contexts/InventoryContexts';

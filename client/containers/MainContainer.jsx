@@ -1,3 +1,14 @@
+/**
+ * ************************************
+ *
+ * @module  MainContainer
+ * @author  Han Chae && Hanji Chen
+ * @date    March 6, 2021
+ * @description
+ *
+ * ************************************
+ */
+
 import React from 'react';
 import InventoryContainer from './InventoryContainer';
 import RecipesContainer from './RecipesContainer';
@@ -7,7 +18,6 @@ function MainContainer() {
   return (
     <div>
       <InventoryProvider>
-        <h1>Hello</h1>
         <InventoryContainer />
         {/* <RecipesContainer /> */}
       </InventoryProvider>

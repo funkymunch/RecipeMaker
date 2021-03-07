@@ -1,6 +1,14 @@
 /**
- * This is React Hooks. This state management basically works like the store in Redux.
+ * ************************************
+ *
+ * @module  InventoryContexts
+ * @author  Han Chae && Hanji Chen
+ * @date    March 6, 2021
+ * @description This is React Hooks. This state management basically works like the store in Redux.
+ *
+ * ************************************
  */
+
 import React, { useContext, useState } from 'react';
 
 const InventoryContext = React.createContext();
