@@ -1,4 +1,3 @@
-// import React, { Component } from 'react';
 import React from 'react';
 import AddIngredient from './AddIngredient';
 import IngredientDisplay from './IngredientDisplay';
@@ -15,9 +14,9 @@ function InventoryBucket({ bucket, bucketNumber }) {
   }
 
   return (
-    <div>
-      <AddIngredient key={`ai${bucketNumber}`} bucketNumber={bucketNumber} />
+    <div className="bucket">
       {IngredientsDisplay}
+      <AddIngredient key={`ai${bucketNumber}`} bucketNumber={bucketNumber} />
     </div>
   );
 }

@@ -1,15 +1,30 @@
 const Item = require('../itemModels');
 
+function frontEndParser(input) {
+    const keyName = Object.keys(input)[0];
+    return input[keyName]
+}
+
+function mongoToFrontEnd(input) {
+    const outputArr = [];
+
+    for (let index = 0; index < input.length; index++) {
+        const newObj = {};
+        const element = input[index];
+        newObj[element.itemName] = element
+        outputArr.push(newObj)
+    }
+
+    return outputArr
+}
+
+
 const dbController = {
 
     // Create new item
     createItem(req, res) {
 
-        const newItem = {
-            itemName: req.body.itemName,
-            bucketNumber: req.body.bucketNumber,
-            use: req.body.use
-        }
+        const newItem = frontEndParser(req.body)
 
         Item.create(newItem, (err, createdDoc) => {
             if (err) {
@@ -27,7 +42,8 @@ const dbController = {
             if (err) {
                 return res.status(400).json(err)
             } else {
-                res.status(200).json(response)
+                const parsed = mongoToFrontEnd(response)
+                res.status(200).json(parsed)
             }
         })
     },
@@ -36,31 +52,27 @@ const dbController = {
 
     updateItem(req, res) {
 
-        //modify so that it takes in 
+        const newItem = frontEndParser(req.body)
 
-        // {
-        //     _id: ""
-        // }
-
-        const oldItem = {
-            _id: req.params.id
+        const updatedItem = {
+            _id: newItem._id
         }
 
-        Item.updateOne(oldItem, req.body, (err, response) => {
+        Item.updateOne(updatedItem, newItem, (err, response) => {
             if (err) {
                 return res.status(400).json(err)
             } else {
                 return res.status(200).json(response)
             }
         })
-
     },
 
     // delete item
 
     deleteItemMany(req, res) {
-        const ids = ["6043c1f1d645c617b559950a","6043dbcafb29d820292d39e5"]
-
+        
+        const ids = req.body
+        console.log(ids)
         Item.deleteMany({ _id: { $in: ids} }, (err, response) => {
             if (err) {
                 return res.status(400).json(err)
@@ -69,13 +81,6 @@ const dbController = {
             }
         })
     }
-
-
-
-
-
-
-
 
 }
 

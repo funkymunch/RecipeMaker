@@ -58,6 +58,8 @@
     "yup": "^0.32.9"
   },
   "dependencies": {
+    "dotenv": "^8.2.0",
+    "dotenv-webpack": "^7.0.1",
     "mongoose": "^5.11.19",
     "pg": "^8.5.1"
   }

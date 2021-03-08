@@ -3,6 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 import MainContainer from './containers/MainContainer';
 import NavBar from './components/NavBar';
 import AboutUs from './components/AboutUs';
+import './styles.css';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route exact path="/aboutus" component={() => <AboutUs />} />
         <Route exact path="/" component={() => <MainContainer />} />
       </Switch> */}
+      {/* <AboutUs /> */}
       <MainContainer />
     </div>
   );
