@@ -1,4 +1,7 @@
+<<<<<<< HEAD
+=======
 // import React, { Component } from 'react';
+>>>>>>> main
 import React from 'react';
 import AddIngredient from './AddIngredient';
 import IngredientDisplay from './IngredientDisplay';
