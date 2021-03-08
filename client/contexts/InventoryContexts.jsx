@@ -1,9 +1,6 @@
-<<<<<<< HEAD
-=======
 /**
  * This is React Hooks. This state management basically works like the store in Redux.
  */
->>>>>>> main
 import React, { useContext, useState } from 'react';
 
 const InventoryContext = React.createContext();
@@ -17,10 +14,7 @@ function useSetInventory() {
 }
 
 function InventoryProvider({ children }) {
-  const [inventory, setInventories] = useState({
-    hanDUMP: { itemName: 'hanDUMP', bucketNumber: 1, use: true, _id: 1 },
-    hanjiDUMP: { itemName: 'hanjiDUMP', bucketNumber: 1, use: true, _id: 2 },
-  });
+  const [inventory, setInventories] = useState({});
 
   function setInventory(newState) {
     setInventories(newState);

@@ -1,36 +1,35 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
+import { CardColumns, CardDeck } from 'react-bootstrap';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import RecipeDisplay from '../components/RecipeDisplay';
+import { useRecipe, useSetRecipe } from '../contexts/RecipeContext';
 
 function RecipesContainer() {
-  let recipesContain;
+  const recipe = useRecipe();
+  const setRecipe = useSetRecipe();
   useEffect(() => {
-    axios.get('./api/recipes').then((res) => {});
+    axios
+      .get('./api/recipes')
+      .then((res) => {
+        setRecipe(res.data);
+      })
+      .catch((err) => console.log(err));
   }, []);
 
-  if (!recipesContain) return 'Loading...';
-<<<<<<< HEAD
-
-  const RecipesDisplay = recipesContain.map((recipe, index) => {
-    <RecipeDisplay key={`rd${index}`} recipe={recipe} />;
-  });
-  function MoreRecipes() {
-    axios.get('./api/recipes').then((res) => {});
+  if (recipe === null) {
+    return 'Loading...';
   }
 
+  const RecipesDisplay = Object.values(recipe).reduce((acc, ele, index) => {
+    acc.push(<RecipeDisplay key={`rd${index}`} recipe={ele} />);
+    return acc;
+  }, []);
   return (
-    <InfiniteScroll dataLength={RecipesDisplay.length} next={MoreRecipes} hasMore={true} loader={<h4>Loading...</h4>}>
-      {RecipesDisplay}
-    </InfiniteScroll>
+    <div style={{ display: 'flex', justifyContent: 'center' }}>
+      <CardDeck style={{ width: '800px', display: 'flex', flexDirection: 'column' }}>{RecipesDisplay}</CardDeck>
+    </div>
   );
-=======
-
-  const RecipesDisplay = recipesContain.map((ele, index) => {
-    <RecipeDisplay />;
-  });
-  return { RecipesDisplay };
->>>>>>> main
 }
 
 export default RecipesContainer;

@@ -2,17 +2,16 @@ import React from 'react';
 import InventoryContainer from './InventoryContainer';
 import RecipesContainer from './RecipesContainer';
 import { InventoryProvider } from '../contexts/InventoryContexts';
+import { RecipeProvider } from '../contexts/RecipeContext';
 
 function MainContainer() {
   return (
     <div>
       <InventoryProvider>
-<<<<<<< HEAD
-=======
-        <h1>Hello</h1>
->>>>>>> main
-        <InventoryContainer />
-        {/* <RecipesContainer /> */}
+        <RecipeProvider>
+          <InventoryContainer />
+          <RecipesContainer />
+        </RecipeProvider>
       </InventoryProvider>
     </div>
   );

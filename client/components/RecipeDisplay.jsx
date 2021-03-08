@@ -1,15 +1,13 @@
 import React, { useState } from 'react';
-<<<<<<< HEAD
 import parse from 'html-react-parser';
 import { Card, ListGroup } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-=======
->>>>>>> main
 import { useInventory, useSetInventory } from '../contexts/InventoryContexts';
 
 function RecipeDisplay(props) {
   const inventory = useInventory();
   const setInventory = useSetInventory();
+  console.log('RDrecipline10', props.recipe);
   // Title
 
   // Picture
@@ -25,7 +23,6 @@ function RecipeDisplay(props) {
   // Instructions
 
   // Button
-<<<<<<< HEAD
   // const dietLabels = [vegetarian, vegan, glutenFree, dairyFree].reduce((acc, ele, index) => {
   //   if (props[ele] === false) {
   //     acc.push(
@@ -47,35 +44,35 @@ function RecipeDisplay(props) {
   // }, []);
 
   return (
-    <Card>
-      <Card.Header>
-        <strong>{props.title}</strong>
-      </Card.Header>
-      <Card.Image variant="top" src={props.image} alt="Food Img" />
-      <Card.Body>
-        {/* <Card.Text>
-          <strong>Summary: </strong>
-          {parse(props.Summary)}
-        </Card.Text> */}
-        <Card.Text>
-          <strong>Instructions: </strong>
-          {parse(props.instructions)}
-        </Card.Text>
-        {/* <ListGroup>
+    <div>
+      <Card className="p-3" style={{ flex: 1 }}>
+        <Card.Header>
+          <strong>{props.recipe.title}</strong>
+        </Card.Header>
+        <Card.Img
+          variant="top"
+          src={props.recipe.image}
+          style={{ position: 'center', maxWidth: '50px' }}
+          alt="Food Img"
+        />
+        <Card.Body>
+          <Card.Text>
+            <strong>Ingredients: </strong>
+            {parse(props.recipe.ingredients)}
+          </Card.Text>
+          <Card.Text>
+            <strong>Instructions: </strong>
+            {parse(props.recipe.instructions)}
+          </Card.Text>
+          {/* <ListGroup>
           <ListGroup.Item></ListGroup.Item>
         </ListGroup> */}
-      </Card.Body>
-      {/* <Card.Footer>
+        </Card.Body>
+        {/* <Card.Footer>
         <ListGroup horizontal>{dietLabels}</ListGroup>
       </Card.Footer> */}
-    </Card>
-=======
-
-  return (
-    <div>
-      <h1>Title</h1>
+      </Card>
     </div>
->>>>>>> main
   );
 }
 export default RecipeDisplay;
