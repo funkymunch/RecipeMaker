@@ -10,7 +10,7 @@ const apiRouter = require('./routes/api');
 
 const PORT = 3000;
 
-// mongoose.connect('mongodb+srv://ziyadelbaz:PYkNVJqtfCs8zDnk@cluster0.bafl3.mongodb.net/test', { useNewUrlParser: true, useUnifiedTopology: true });
+// mongoose.connect('mongodb+srv://ziyadelbaz:<password>@cluster0.bafl3.mongodb.net/test', { useNewUrlParser: true, useUnifiedTopology: true });
 // mongoose.connection.once('open', () => {
 //   console.log('Connected to FunkyMunch Database')
 // });
