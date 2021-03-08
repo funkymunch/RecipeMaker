@@ -1,6 +1,8 @@
 const path = require('path');
 const express = require('express');
 
+require('dotenv').config();
+
 const mongoose = require('mongoose');
 
 
@@ -10,7 +12,7 @@ const apiRouter = require('./routes/api');
 
 const PORT = 3000;
 
-mongoose.connect('mongodb+srv://ziyadelbaz:PYkNVJqtfCs8zDnk@cluster0.bafl3.mongodb.net/test', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(`mongodb+srv://${process.env.USERNAME}:${process.env.PASSWORD}@cluster0.bafl3.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`, { useNewUrlParser: true, useUnifiedTopology: true });
 mongoose.connection.once('open', () => {
   console.log('Connected to FunkyMunch Database')
 });
