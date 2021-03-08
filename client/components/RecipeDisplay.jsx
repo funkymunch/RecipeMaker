@@ -23,6 +23,7 @@ function RecipeDisplay(props) {
   // Instructions
 
   // Button
+
   // const dietLabels = [vegetarian, vegan, glutenFree, dairyFree].reduce((acc, ele, index) => {
   //   if (props[ele] === false) {
   //     acc.push(

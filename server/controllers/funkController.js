@@ -49,18 +49,7 @@ funkController.deleteItems = (req, res, next) => {
 funkController.getRecipes = async (req, res, next) => {
   console.log('Hit getRecipes!!', req.body);
   
-  
-  // API REQUEST LOGIC / ALGO
-  
-  //   req.body -----> {itemName: {bucketNo: num, use: true/false}, item2name:{...}}
-  
-  const items = Object.keys(req.body);
-  
-  const commaItems = items.join(',+');
-  
-  console.log('commaItems:', commaItems);
-  
-  let keyIndex = 0;
+  let keyIndex = 1;
   const apiKeys = [
     '15b3f4802c0e4563b2bded336d9fe84e',
     'f470747f26984405bc334aa91f91c166',
@@ -68,20 +57,89 @@ funkController.getRecipes = async (req, res, next) => {
   ];
   const howManyRecipes = 2;
   
-  const url = `https://api.spoonacular.com/recipes/findByIngredients?ingredients=${commaItems}&number=${howManyRecipes}&ranking=2&apiKey=${apiKeys[keyIndex]}`;
+  
+  
+  let itemsNames = [];
+  const itemsObj = req.body;
+  const items = Object.keys(itemsObj);
+  const useThese = items.filter(el => itemsObj[el]['use']);
+  let extras = [];
+  
+  console.log('useThese:', useThese)
+  
+  if (!useThese.length) {
+    const bucket1 = items.filter(el => itemsObj[el]['bucketNumber'] === 1);
+    const bucket2 = items.filter(el => itemsObj[el]['bucketNumber'] === 2);
+    const bucket3 = items.filter(el => itemsObj[el]['bucketNumber'] === 3);
+    console.log('bucket1:', bucket1)
+    console.log('bucket2:', bucket2)
+    console.log('bucket3:', bucket3)
+    
+    if (bucket1.length) {
+      itemsNames = itemsNames.concat(bucket1);
+    }
+    extras = extras.concat(bucket2).concat(bucket3);
+    console.log('extras:', extras)    
+    
+  } else {
+    itemsNames = useThese;
+  }
+  
+  console.log('itemsNames:', itemsNames);
+  
+  
+  let commaItems = itemsNames.join(',+');
+  
+  console.log('commaItems:', commaItems);
+  
+  if (!commaItems.length) throw new Error('No items to use!');
+  let recipesListFinal = [];
+  
+  while(extras.length) {
+    console.log('extras:', extras)
+    try {
+      
+      const url = `https://api.spoonacular.com/recipes/findByIngredients?ingredients=${commaItems}&number=${howManyRecipes}&ranking=2&apiKey=${apiKeys[keyIndex]}`;
+      
+      
+      // get recipes list
+      const recipesListData = await fetch(url);
+      const recipesList = await recipesListData.json();
+      
+      if (!Array.isArray(recipesList)) throw new Error('Invalid recipes list');
+      
+      console.log('recipesList:', recipesList)
+      if (recipesList.length >= 5) {
+        recipesListFinal = recipesList;
+        break;
+      } else {
+        commaItems += ',+' + extras.shift();
+        recipesListFinal = recipesList;
+      }    
+      
+    }
+    
+    catch (err){
+      const error = {
+        log: 'Error in getRecipes controller (get recipes list)',
+        status: 500,
+        message: { err: err.message},
+      };
+      return next(error);
+    }
+    
+  }
+  
+  
   
   try {
-    // get recipes list
-    const recipesListData = await fetch(url);
-    const recipesList = await recipesListData.json();
-    
     // get recipe IDs
-    const recipeIDs = recipesList.map(el => el.id);
+    const recipeIDs = recipesListFinal.map(el => el.id);
     console.log('recipeIDs:', recipeIDs)    
     
     // build return recipe object
     const recipeObj = {};
-    for (const rec of recipesList) {
+    for (const rec of recipesListFinal) {
       recipeObj[rec.id] = {id: rec.id, title: rec.title, image: rec.image}
     }
     
@@ -146,11 +204,16 @@ funkController.getRecipes = async (req, res, next) => {
     
     console.log('recipeobj:', recipeObj)  
     
-    res.json(recipeObj)
+    // res.json(recipeObj)
     
   }
   catch (err) {
-    return next('Recipes list failed to load')
+    const error = {
+      log: 'Error in getRecipes controller',
+      status: 500,
+      message: { err: err.message},
+    };
+    return next(error);
   }
   
   
@@ -229,6 +292,7 @@ funkController.getRecipes = async (req, res, next) => {
   
   
   // ********************* */
+  res.locals.recipes = recipeObj;  
   
   //for non-API testing
   return next();
