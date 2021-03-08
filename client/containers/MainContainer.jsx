@@ -7,10 +7,7 @@ function MainContainer() {
   return (
     <div>
       <InventoryProvider>
-<<<<<<< HEAD
-=======
         <h1>Hello</h1>
->>>>>>> main
         <InventoryContainer />
         {/* <RecipesContainer /> */}
       </InventoryProvider>
