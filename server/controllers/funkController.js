@@ -66,8 +66,9 @@ funkController.getRecipes = async (req, res, next) => {
     'f470747f26984405bc334aa91f91c166',
     '2cb2288f93d441528099bd7df94f6b1a',
   ];
+  const howManyRecipes = 2;
   
-  const url = `https://api.spoonacular.com/recipes/findByIngredients?ingredients=${commaItems}&number=1&ranking=2&apiKey=${apiKeys[keyIndex]}`;
+  const url = `https://api.spoonacular.com/recipes/findByIngredients?ingredients=${commaItems}&number=${howManyRecipes}&ranking=2&apiKey=${apiKeys[keyIndex]}`;
   
   try {
     // get recipes list
@@ -76,6 +77,7 @@ funkController.getRecipes = async (req, res, next) => {
     
     // get recipe IDs
     const recipeIDs = recipesList.map(el => el.id);
+    console.log('recipeIDs:', recipeIDs)    
     
     // build return recipe object
     const recipeObj = {};
@@ -109,16 +111,42 @@ funkController.getRecipes = async (req, res, next) => {
       const {recipe, idRecipe} = el;
       if (recipe.length) {
         for (const dish of recipe) {
-          if (dish.name.length) recipeText += `${dish.name}\n\n`
-          recipeText += dish.steps.map(((stepObj, i) => `${i}. ${stepObj.step}`)).join('\n\n')
+          console.log('dish:', dish)
+          if (dish.name.length) recipeText += `${dish.name}\n\n`;
+          recipeText += dish.steps.map(((stepObj, i) => `${i + 1}. ${stepObj.step}`)).join('\n\n');
+          
         }
       }
+      console.log('recipeText:', recipeText)
       if (recipeText.length) {
         recipeObj[idRecipe]['instructions'] = recipeText; 
       }
     });
     
-    console.log('recipeObj:', recipeObj)  
+    console.log('recipeObj:', recipeObj)
+    
+    console.log('all ingredients:', ingredientsAll)
+    ingredientsAll.forEach(el => {
+      let ingredientsText = '';
+      const {ingredients, idIngredients} = el;
+      if (typeof ingredients === 'object') {
+        if (ingredients.ingredients) {
+          for (const ing of ingredients.ingredients) {
+            if (ing.name.length) {
+              ingredientsText += `${ing.name}`;
+              ingredientsText += `, ${ing.amount.us.value} ${ing.amount.us.unit}\n\n`;
+            }
+          } 
+        }    
+      }
+      if (ingredientsText.length) {
+        recipeObj[idIngredients]['ingredients'] = ingredientsText;
+      }
+    });
+    
+    console.log('recipeobj:', recipeObj)  
+    
+    res.json(recipeObj)
     
   }
   catch (err) {
