@@ -1,14 +1,3 @@
-/**
- * ************************************
- *
- * @module  App.jsx
- * @author  Han Chae && Hanji Chen
- * @date    March 6, 2021
- * @description
- *
- * ************************************
- */
-
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import MainContainer from './containers/MainContainer';

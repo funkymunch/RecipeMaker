@@ -1,14 +1,3 @@
-/**
- * ************************************
- *
- * @module  RecipeDisplay
- * @author  Han Chae && Hanji Chen
- * @date    March 6, 2021
- * @description
- *
- * ************************************
- */
-
 import React, { useState } from 'react';
 import parse from 'html-react-parser';
 import { Card, ListGroup } from 'react-bootstrap';
@@ -33,48 +22,48 @@ function RecipeDisplay(props) {
   // Instructions
 
   // Button
-  const dietLabels = [vegetarian, vegan, glutenFree, dairyFree].reduce((acc, ele, index) => {
-    if (props[ele] === false) {
-      acc.push(
-        <ListGroup.Item
-          key={`rddl${index}`}
-          style={{ textTransform: 'capitalize', textDecorationLine: 'line-through' }}
-        >
-          {ele}
-        </ListGroup.Item>
-      );
-    } else if (props[ele] === true) {
-      acc.push(
-        <ListGroup.Item key={`rddl${index}`} style={{ textTransform: 'capitalize' }}>
-          {ele}
-        </ListGroup.Item>
-      );
-    }
-    return acc;
-  }, []);
+  // const dietLabels = [vegetarian, vegan, glutenFree, dairyFree].reduce((acc, ele, index) => {
+  //   if (props[ele] === false) {
+  //     acc.push(
+  //       <ListGroup.Item
+  //         key={`rddl${index}`}
+  //         style={{ textTransform: 'capitalize', textDecorationLine: 'line-through' }}
+  //       >
+  //         {ele}
+  //       </ListGroup.Item>
+  //     );
+  //   } else if (props[ele] === true) {
+  //     acc.push(
+  //       <ListGroup.Item key={`rddl${index}`} style={{ textTransform: 'capitalize' }}>
+  //         {ele}
+  //       </ListGroup.Item>
+  //     );
+  //   }
+  //   return acc;
+  // }, []);
 
   return (
     <Card>
       <Card.Header>
-        <strong>{props.Title}</strong>
+        <strong>{props.title}</strong>
       </Card.Header>
-      <Card.Image variant="top" src={props.Image} alt="Food Img" />
+      <Card.Image variant="top" src={props.image} alt="Food Img" />
       <Card.Body>
-        <Card.Text>
+        {/* <Card.Text>
           <strong>Summary: </strong>
           {parse(props.Summary)}
-        </Card.Text>
+        </Card.Text> */}
         <Card.Text>
           <strong>Instructions: </strong>
-          {parse(props.Instructions)}
+          {parse(props.instructions)}
         </Card.Text>
-        <ListGroup>
+        {/* <ListGroup>
           <ListGroup.Item></ListGroup.Item>
-        </ListGroup>
+        </ListGroup> */}
       </Card.Body>
-      <Card.Footer>
+      {/* <Card.Footer>
         <ListGroup horizontal>{dietLabels}</ListGroup>
-      </Card.Footer>
+      </Card.Footer> */}
     </Card>
   );
 }

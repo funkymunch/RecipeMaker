@@ -1,14 +1,3 @@
-/**
- * ************************************
- *
- * @module  NavBar
- * @author  Hanji Chen
- * @date    March 7, 2021
- * @description
- *
- * ************************************
- */
-
 import React from 'react';
 import { Navbar, Nav } from 'react-bootstrap';
 

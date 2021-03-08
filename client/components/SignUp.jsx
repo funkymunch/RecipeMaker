@@ -1,14 +1,3 @@
-/**
- * ************************************
- *
- * @module  SignUp
- * @author  Hanji Chen
- * @date    March 7, 2021
- * @description
- *
- * ************************************
- */
-
 import React from 'react';
 import axios from 'axios';
 import { Formik } from 'formik';
@@ -34,7 +23,7 @@ function FormExample() {
       onSubmit={console.log}
       initialValues={{
         firstName: 'Han',
-        lastName: 'Demp',
+        lastName: 'Dump',
         username: '',
         password: '',
         repassword: '',

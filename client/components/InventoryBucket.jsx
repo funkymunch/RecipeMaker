@@ -1,14 +1,3 @@
-/**
- * ************************************
- *
- * @module  InventoryBucket
- * @author  Han Chae && Hanji Chen
- * @date    March 6, 2021
- * @description
- *
- * ************************************
- */
-
 import React from 'react';
 import AddIngredient from './AddIngredient';
 import IngredientDisplay from './IngredientDisplay';

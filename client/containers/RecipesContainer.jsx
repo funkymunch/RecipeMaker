@@ -1,14 +1,3 @@
-/**
- * ************************************
- *
- * @module  RecipesContainer
- * @author  Han Chae && Hanji Chen
- * @date    March 6, 2021
- * @description
- *
- * ************************************
- */
-
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';

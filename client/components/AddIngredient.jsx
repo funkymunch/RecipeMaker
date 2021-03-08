@@ -1,14 +1,3 @@
-/**
- * ************************************
- *
- * @module  AddIngredient
- * @author  Hanji Chen
- * @date    March 6, 2021
- * @description
- *
- * ************************************
- */
-
 import React, { useState } from 'react';
 import { useInventory, useSetInventory } from '../contexts/InventoryContexts';
 import axios from 'axios';

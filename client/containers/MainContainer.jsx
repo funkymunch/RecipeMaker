@@ -1,14 +1,3 @@
-/**
- * ************************************
- *
- * @module  MainContainer
- * @author  Han Chae && Hanji Chen
- * @date    March 6, 2021
- * @description
- *
- * ************************************
- */
-
 import React from 'react';
 import InventoryContainer from './InventoryContainer';
 import RecipesContainer from './RecipesContainer';

@@ -1,14 +1,3 @@
-/**
- * ************************************
- *
- * @module  IngredientDisplay
- * @author  Han Chae
- * @date    March 6, 2021
- * @description
- *
- * ************************************
- */
-
 import React from 'react';
 import { useInventory, useSetInventory } from '../contexts/InventoryContexts';
 import axios from 'axios';

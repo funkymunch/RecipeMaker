@@ -1,27 +1,17 @@
-/**
- * ************************************
- *
- * @module  AboutUs
- * @author  Hanji Chen
- * @date    March 7, 2021
- * @description
- *
- * ************************************
- */
-
 import React from 'react';
 import { Card, CardDeck, Image, Jumbotron, ListGroup } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function AboutUs() {
-  const gGImg =
-    'https://i.ibb.co/tcbzrb9/kisspng-github-logo-repository-computer-icons-5afa376c51ca94-387166531526347628335.png';
-  const lLImg = 'https://i.ibb.co/gzBfy74/pngwing-com.png';
-  const emImg = 'https://i.ibb.co/3Wk792S/pngwing-com-1.png';
+  const gGImg = 'https://i.ibb.co/wzCf42T/github.png';
+  const lLImg = 'https://i.ibb.co/vH0SSft/linkedin.png';
+  const emImg = 'https://i.ibb.co/Sxpx2gt/email.png';
 
   return (
     <Jumbotron>
-      <h1>Thank You!</h1>
+      <h1>
+        <strong>Thank You!</strong>
+      </h1>
       <CardDeck>
         <Card>
           <Card.Image src={'placeholder.png'} />
@@ -29,15 +19,15 @@ function AboutUs() {
           <ListGroup>
             <ListGroup.Item action href="github">
               <Image src={gGImg} style={{ position: 'center', maxWidth: '25px' }} className="rounded mr-2" />{' '}
-              github/HanDump
+              github/HanDump LOL
             </ListGroup.Item>
             <ListGroup.Item action href="linkedlin">
               <Image src={lLImg} style={{ position: 'center', maxWidth: '24px' }} className="rounded mr-2" />{' '}
-              linkedlin/HanDump
+              linkedlin/HanDump LOL
             </ListGroup.Item>
             <ListGroup.Item>
               <Image src={emImg} style={{ position: 'center', maxWidth: '22px' }} className="rounded mr-2" />{' '}
-              HanDump@gmail.com
+              HanDump@gmail.com LOL
             </ListGroup.Item>
           </ListGroup>
         </Card>
