@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
+<<<<<<< HEAD
 import parse from 'html-react-parser';
 import { Card, ListGroup } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+=======
+>>>>>>> main
 import { useInventory, useSetInventory } from '../contexts/InventoryContexts';
 
 function RecipeDisplay(props) {
@@ -22,6 +25,7 @@ function RecipeDisplay(props) {
   // Instructions
 
   // Button
+<<<<<<< HEAD
   // const dietLabels = [vegetarian, vegan, glutenFree, dairyFree].reduce((acc, ele, index) => {
   //   if (props[ele] === false) {
   //     acc.push(
@@ -65,6 +69,13 @@ function RecipeDisplay(props) {
         <ListGroup horizontal>{dietLabels}</ListGroup>
       </Card.Footer> */}
     </Card>
+=======
+
+  return (
+    <div>
+      <h1>Title</h1>
+    </div>
+>>>>>>> main
   );
 }
 export default RecipeDisplay;

@@ -10,6 +10,7 @@ function RecipesContainer() {
   }, []);
 
   if (!recipesContain) return 'Loading...';
+<<<<<<< HEAD
 
   const RecipesDisplay = recipesContain.map((recipe, index) => {
     <RecipeDisplay key={`rd${index}`} recipe={recipe} />;
@@ -23,6 +24,13 @@ function RecipesContainer() {
       {RecipesDisplay}
     </InfiniteScroll>
   );
+=======
+
+  const RecipesDisplay = recipesContain.map((ele, index) => {
+    <RecipeDisplay />;
+  });
+  return { RecipesDisplay };
+>>>>>>> main
 }
 
 export default RecipesContainer;

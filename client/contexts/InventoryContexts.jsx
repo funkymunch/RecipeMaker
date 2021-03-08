@@ -1,3 +1,9 @@
+<<<<<<< HEAD
+=======
+/**
+ * This is React Hooks. This state management basically works like the store in Redux.
+ */
+>>>>>>> main
 import React, { useContext, useState } from 'react';
 
 const InventoryContext = React.createContext();
