@@ -1,0 +1,7 @@
+.bucket {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 60%;
+  border: 1px solid black;
+}

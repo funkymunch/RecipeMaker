@@ -14,7 +14,7 @@ function AboutUs() {
       </h1>
       <CardDeck>
         <Card>
-          <Card.Image src={'placeholder.png'} />
+          <Card.Image src={'https://picsum.photos/200/300'} />
           <Card.Title>Han</Card.Title>
           <ListGroup>
             <ListGroup.Item action href="github">
@@ -32,7 +32,7 @@ function AboutUs() {
           </ListGroup>
         </Card>
         <Card>
-          <Card.Image src={'placeholder.png'} />
+          <Card.Image src={'https://picsum.photos/200/300'} />
           <Card.Title>Hanji Chen</Card.Title>
           <ListGroup>
             <ListGroup.Item action href="https://github.com/whyWhyDev">
@@ -50,7 +50,7 @@ function AboutUs() {
           </ListGroup>
         </Card>
         <Card>
-          <Card.Image src={'placeholder.png'} />
+          <Card.Image src={'https://picsum.photos/200/300'} />
           <Card.Title>Nick</Card.Title>
           <ListGroup>
             <ListGroup.Item action href="github">
@@ -68,7 +68,7 @@ function AboutUs() {
           </ListGroup>
         </Card>
         <Card>
-          <Card.Image src={'placeholder.png'} />
+          <Card.Image src={'https://picsum.photos/200/300'} />
           <Card.Title>Ziyad</Card.Title>
           <ListGroup>
             <ListGroup.Item action href="github">
