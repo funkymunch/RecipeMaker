@@ -14,6 +14,8 @@ function InventoryContainer() {
   // this is will give us the initial state of the inventory
   useEffect(() => {
     axios.get('./api/inventory').then((res) => {
+      // this is a sample data structure from the server: {carrot: {itemName: carrot: bucketNumber: 1, use: true, _id: 1234}}
+      //                                                  [{itemName: carrot: bucketNumber: 1, use: true, _id: 1234}]
       setInventory(res.data);
     });
   }, []);
@@ -34,25 +36,13 @@ function InventoryContainer() {
     InventoryBuckets.push(<InventoryBucket key={`ib${i}`} bucket={bucket} bucketNumber={i} />);
   }
 
-  function getRecipes() {
-    console.log(inventory);
-    axios
-      .post('./api/recipes', inventory)
-      .then((res) => {
-        setRecipe(res.data);
-        console.log('SUBMIT RECIPE', res.data);
-        console.log(`Recipe retrieved from submit`);
-      })
-      .catch((e) => {
-        console.log(`ERR: Recipe retrieval from submit is not working`);
-      });
-  }
+  function getRecipes() {}
 
   return (
     // three buckets with data passed down for each bucket
-    <div className="inventoryContainer">
+    <div>
       {InventoryBuckets}
-      <button onClick={getRecipes}>Submit</button>
+      <button onClick={null}>Submit</button>
     </div>
   );
 }

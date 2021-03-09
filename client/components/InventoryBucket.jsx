@@ -17,6 +17,7 @@ function InventoryBucket({ bucket, bucketNumber }) {
     <div className="bucket">
       <AddIngredient key={`ai${bucketNumber}`} bucketNumber={bucketNumber} />
       {IngredientsDisplay}
+      <AddIngredient key={`ai${bucketNumber}`} bucketNumber={bucketNumber} />
     </div>
   );
 }

@@ -1,13 +1,13 @@
 import React, { useContext, useState } from 'react';
 
 const RecipeContext = React.createContext();
-const SetRecipeContext = React.createContext();
+const SetRecipeConext = React.createContext();
 
 function useRecipe() {
   return useContext(RecipeContext);
 }
 function useSetRecipe() {
-  return useContext(SetRecipeContext);
+  return useContext(SetRecipeConext);
 }
 
 function RecipeProvider({ children }) {
@@ -19,7 +19,7 @@ function RecipeProvider({ children }) {
 
   return (
     <RecipeContext.Provider value={recipe}>
-      <SetRecipeContext.Provider value={setRecipe}>{children}</SetRecipeContext.Provider>
+      <SetRecipeConext.Provider value={setRecipe}>{children}</SetRecipeConext.Provider>
     </RecipeContext.Provider>
   );
 }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import parse from 'html-react-parser';
 import { Card } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -6,6 +6,23 @@ import { useInventory, useSetInventory } from '../contexts/InventoryContexts';
 
 function RecipeDisplay(props) {
   const inventory = useInventory();
+  const setInventory = useSetInventory();
+  console.log('RDrecipline10', props.recipe);
+  // Title
+
+  // Picture
+
+  // Info:
+  //    cooking itme:
+  //    servings:
+
+  // Summary
+
+  // Ingredients
+
+  // Instructions
+
+  // Button
 
   // const dietLabels = [vegetarian, vegan, glutenFree, dairyFree].reduce((acc, ele, index) => {
   //   if (props[ele] === false) {
@@ -36,8 +53,7 @@ function RecipeDisplay(props) {
         <Card.Img
           variant="top"
           src={props.recipe.image}
-          className="mx-auto d-block"
-          style={{ maxWidth: '150px' }}
+          style={{ position: 'center', maxWidth: '50px' }}
           alt="Food Img"
         />
         <Card.Body>
@@ -49,6 +65,9 @@ function RecipeDisplay(props) {
             <strong>Instructions: </strong>
             {parse(props.recipe.instructions)}
           </Card.Text>
+          {/* <ListGroup>
+          <ListGroup.Item></ListGroup.Item>
+        </ListGroup> */}
         </Card.Body>
         {/* <Card.Footer>
         <ListGroup horizontal>{dietLabels}</ListGroup>

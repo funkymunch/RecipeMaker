@@ -926,3 +926,9 @@ const recipesList = [
     }
 ]
 
+
+
+
+//sample getRecipes object from front end
+
+{"buttermilk": {"bucketNumber": 1, "use": true, "itemName": "buttermilk"}, "bourbon": {"bucketNumber": 2, "use":true, "itemName": "bourbon"}, "rice": {"bucketNumber": 1, "use": false, "itemName": "rice"}}
