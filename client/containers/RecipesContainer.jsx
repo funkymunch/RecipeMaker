@@ -1,21 +1,26 @@
 import axios from 'axios';
-import React, { useState, useEffect } from 'react';
-import { CardColumns, CardDeck } from 'react-bootstrap';
-import InfiniteScroll from 'react-infinite-scroll-component';
+import React, { useEffect } from 'react';
+import { CardDeck } from 'react-bootstrap';
 import RecipeDisplay from '../components/RecipeDisplay';
 import { useRecipe, useSetRecipe } from '../contexts/RecipeContext';
+import { useInventory } from '../contexts/InventoryContexts';
 
 function RecipesContainer() {
+  const inventory = useInventory();
   const recipe = useRecipe();
   const setRecipe = useSetRecipe();
+
+  if (inventory === null) return 'inLoading';
+
   useEffect(() => {
     axios
-      .get('./api/recipes')
+      .post('./api/recipes', inventory)
       .then((res) => {
+        console.log('line18data', res.data);
         setRecipe(res.data);
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [inventory]);
 
   if (recipe === null) {
     return 'Loading...';
@@ -25,25 +30,12 @@ function RecipesContainer() {
     acc.push(<RecipeDisplay key={`rd${index}`} recipe={ele} />);
     return acc;
   }, []);
+
   return (
-    <div style={{ display: 'flex', justifyContent: 'center' }}>
+    <div style={{ display: 'flex', justifyContent: 'center', paddingTop: '50px' }}>
       <CardDeck style={{ width: '800px', display: 'flex', flexDirection: 'column' }}>{RecipesDisplay}</CardDeck>
     </div>
   );
 }
 
 export default RecipesContainer;
-
-// infiniteScroll = () => {
-// // End of the document reached?
-//   if (window.innerHeight + document.documentElement.scrollTop
-//   === document.documentElement.offsetHeight){
-
-//     let newPage = this.state.page;
-//     newPage++;
-//     this.setState({
-//           page: newPage
-//     });
-//     this.fetchData(newPage);
-//   }
-// }

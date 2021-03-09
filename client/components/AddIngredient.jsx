@@ -13,11 +13,15 @@ function AddIngredient({ bucketNumber }) {
     const newBucket = { ...inventory, ...tempIng };
     axios
       .post('./api/inventory', tempIng)
-      .then((res) => console.log('AddIngRes', res))
+      .then((res) => {
+        setInventory(newBucket);
+        console.log('AddIngRes', res.data);
+      })
       .catch((err) => {
         console.log('AddIngErr', err);
       });
-    setInventory(newBucket);
+    console.log('newbucket', newBucket);
+    console.log('inventory', inventory);
   }
 
   const handleSubmit = (e) => {

@@ -12,7 +12,7 @@ const steps = [
                 "ingredients": [
                     {
                         "id": 0,
-                        "name": "dough",
+                       "name": "dough",
                         "localizedName": "dough",
                         "image": "pizza-dough"
                     }

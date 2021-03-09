@@ -2,17 +2,18 @@ import React, { useEffect } from 'react';
 import axios from 'axios';
 import InventoryBucket from '../components/InventoryBucket';
 import { useInventory, useSetInventory } from '../contexts/InventoryContexts';
+import { useRecipe, useSetRecipe } from '../contexts/RecipeContext';
 
 function InventoryContainer() {
   const inventory = useInventory();
   const setInventory = useSetInventory();
+  const recipe = useRecipe();
+  const setRecipe = useSetRecipe();
 
   // this works like componentDidMount and willMount
   // this is will give us the initial state of the inventory
   useEffect(() => {
     axios.get('./api/inventory').then((res) => {
-      // this is a sample data structure from the server: {carrot: {itemName: carrot: bucketNumber: 1, use: true, _id: 1234}}
-      //                                                  [{itemName: carrot: bucketNumber: 1, use: true, _id: 1234}]
       setInventory(res.data);
     });
   }, []);
@@ -33,13 +34,25 @@ function InventoryContainer() {
     InventoryBuckets.push(<InventoryBucket key={`ib${i}`} bucket={bucket} bucketNumber={i} />);
   }
 
-  function getRecipes() {}
+  function getRecipes() {
+    console.log(inventory);
+    axios
+      .post('./api/recipes', inventory)
+      .then((res) => {
+        setRecipe(res.data);
+        console.log('SUBMIT RECIPE', res.data);
+        console.log(`Recipe retrieved from submit`);
+      })
+      .catch((e) => {
+        console.log(`ERR: Recipe retrieval from submit is not working`);
+      });
+  }
 
   return (
     // three buckets with data passed down for each bucket
-    <div>
+    <div className="inventoryContainer">
       {InventoryBuckets}
-      <button onClick={null}>Submit</button>
+      <button onClick={getRecipes}>Submit</button>
     </div>
   );
 }
