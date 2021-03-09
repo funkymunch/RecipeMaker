@@ -3,49 +3,6 @@ const fetch = require('node-fetch');
 
 const funkController = {};
 
-funkController.getInventory = (req, res, next) => {
-  console.log('Hit getInventory!!');
-  
-  //for non-DB testing
-  return next();
-};
-
-funkController.createItem = (req, res, next) => {
-  //  item info on req.body -----> {item1Name: {itemName: string, bucketNo: num, use: true/false}}
-  
-  console.log('Hit createItem!!');
-  
-  const items = Object.keys(req.body);
-  // console.log('items:', items)
-  const queryItem = req.body[items[0]];
-  console.log('queryItem:', queryItem);
-  
-  //for non-DB testing
-  return next();
-};
-
-funkController.updateItem = (req, res, next) => {
-  //   req.body -----> {{itemName: {bucketNo: num, use: true/false}}
-  
-  console.log('Hit updateItem!!');
-  
-  const items = Object.keys(req.body);
-  // console.log('items:', items)
-  const queryItem = req.body[items[0]];
-  console.log('queryItem:', queryItem);
-  
-  //for non-DB testing
-  return next();
-};
-
-funkController.deleteItems = (req, res, next) => {
-  //   req.body -----> {itemName: {bucketNo: num, use: true/false}, item2name:{...}}
-  
-  console.log('Hit deleteItems!!', req.body);
-  
-  return next();
-};
-
 funkController.getRecipes = async (req, res, next) => {
   console.log('Hit getRecipes!!', req.body);
   
@@ -62,15 +19,30 @@ funkController.getRecipes = async (req, res, next) => {
   let itemsNames = [];
   const itemsObj = req.body;
   const items = Object.keys(itemsObj);
-  const useThese = items.filter(el => itemsObj[el]['use']);
-  let extras = [];
   
+  if (!items.length) {
+    res.locals.recipes = 'No ingredients provided';
+    return next();
+  }
+  
+  const useThese = items.filter(el => itemsObj[el]['use']);  
   console.log('useThese:', useThese)
   
   if (!useThese.length) {
-    const bucket1 = items.filter(el => itemsObj[el]['bucketNumber'] === 1);
-    const bucket2 = items.filter(el => itemsObj[el]['bucketNumber'] === 2);
-    const bucket3 = items.filter(el => itemsObj[el]['bucketNumber'] === 3);
+    
+    for (let i = 0; i < 3; i++) {
+      const bucket = items.filter(el => itemsObj[el]['bucketNumber'] === i);
+      if (bucket.length) {
+        
+      }
+      
+    }
+    
+    
+    
+    const bucket1 = items.filter(el => itemsObj[el]['bucketNumber'] === 0);
+    const bucket2 = items.filter(el => itemsObj[el]['bucketNumber'] === 1);
+    const bucket3 = items.filter(el => itemsObj[el]['bucketNumber'] === 2);
     console.log('bucket1:', bucket1)
     console.log('bucket2:', bucket2)
     console.log('bucket3:', bucket3)
@@ -203,6 +175,7 @@ funkController.getRecipes = async (req, res, next) => {
     });
     
     console.log('recipeobj:', recipeObj)  
+    res.locals.recipes = recipeObj;  
     
     // res.json(recipeObj)
     
@@ -292,7 +265,6 @@ funkController.getRecipes = async (req, res, next) => {
   
   
   // ********************* */
-  res.locals.recipes = recipeObj;  
   
   //for non-API testing
   return next();
