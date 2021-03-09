@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 .inventoryContainer {
   display: flex;
   flex-direction: column;
@@ -7,13 +6,10 @@
   width: 100%;
 }
 
-=======
->>>>>>> main
 .bucket {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-<<<<<<< HEAD
 
   height: 300px;
   border: 1px solid black;
@@ -48,8 +44,6 @@
   font-size: 0.5em;
   /* display: flex;
   flex-direction: column; */
-=======
   width: 60%;
   border: 1px solid black;
->>>>>>> main
 }
