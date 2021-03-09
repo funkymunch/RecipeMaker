@@ -17,7 +17,6 @@ function RecipesContainer() {
       .catch((err) => console.log(err));
   }, []);
 
-
   if (recipe === null) {
     return 'Loading...';
   }
@@ -34,17 +33,3 @@ function RecipesContainer() {
 }
 
 export default RecipesContainer;
-
-// infiniteScroll = () => {
-// // End of the document reached?
-//   if (window.innerHeight + document.documentElement.scrollTop
-//   === document.documentElement.offsetHeight){
-
-//     let newPage = this.state.page;
-//     newPage++;
-//     this.setState({
-//           page: newPage
-//     });
-//     this.fetchData(newPage);
-//   }
-// }

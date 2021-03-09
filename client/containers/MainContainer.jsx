@@ -6,7 +6,7 @@ import { RecipeProvider } from '../contexts/RecipeContext';
 
 function MainContainer() {
   return (
-    <div>
+    <div style={{ display: 'flex' }}>
       <InventoryProvider>
         <RecipeProvider>
           <InventoryContainer />

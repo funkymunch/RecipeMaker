@@ -2,10 +2,13 @@ import React, { useEffect } from 'react';
 import axios from 'axios';
 import InventoryBucket from '../components/InventoryBucket';
 import { useInventory, useSetInventory } from '../contexts/InventoryContexts';
+import { useRecipe, useSetRecipe } from '../contexts/RecipeContext';
 
 function InventoryContainer() {
   const inventory = useInventory();
   const setInventory = useSetInventory();
+  const recipe = useRecipe();
+  const setRecipe = useSetRecipe();
 
   // this works like componentDidMount and willMount
   // this is will give us the initial state of the inventory
